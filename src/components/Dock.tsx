@@ -1,14 +1,25 @@
-import { dockApps } from "@/constants";
+import { dockApps, type WindowKey } from "@/constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
+import useWindowStore from "@/store/window";
 
 const Dock = () => {
+	const { windows, openWindow, closeWindow } = useWindowStore();
 	const dockRef = useRef<HTMLDivElement>(null);
 
-	const toggleApp = ({ id, canOpen }: { id: string; canOpen: boolean }) => {
-		console.log(`Toggling app: ${id}, Can Open: ${canOpen}`);
+	const toggleApp = ({ id, canOpen }: { id: WindowKey; canOpen: boolean }) => {
+		if (!canOpen) return;
+		const window = windows[id];
+
+		if (window.isOpen) {
+			closeWindow(id);
+		} else {
+			openWindow(id);
+		}
+
+		console.log(windows);
 	};
 
 	useGSAP(() => {

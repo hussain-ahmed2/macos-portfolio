@@ -35,7 +35,14 @@ const navIcons = [
 	},
 ];
 
-const dockApps = [
+type DockApp = {
+	id: WindowKey;
+	name: string;
+	icon: string;
+	canOpen: boolean;
+};
+
+const dockApps: DockApp[] = [
 	{
 		id: "finder",
 		name: "Portfolio", // was "Finder"
@@ -482,7 +489,21 @@ export const locations = {
 
 const INITIAL_Z_INDEX = 1000;
 
-const WINDOW_CONFIG = {
+type Windows = {
+	finder: { isOpen: boolean; zIndex: number; data: null | unknown };
+	contact: { isOpen: boolean; zIndex: number; data: null | unknown };
+	resume: { isOpen: boolean; zIndex: number; data: null | unknown };
+	safari: { isOpen: boolean; zIndex: number; data: null | unknown };
+	photos: { isOpen: boolean; zIndex: number; data: null | unknown };
+	terminal: { isOpen: boolean; zIndex: number; data: null | unknown };
+	txtfile: { isOpen: boolean; zIndex: number; data: null | unknown };
+	imgfile: { isOpen: boolean; zIndex: number; data: null | unknown };
+	trash: { isOpen: boolean; zIndex: number; data: null | unknown };
+};
+
+type WindowKey = keyof Windows;
+
+const WINDOW_CONFIG: Windows = {
 	finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 	contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 	resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
@@ -491,6 +512,9 @@ const WINDOW_CONFIG = {
 	terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 	txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 	imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+	trash: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
+
+export type { Windows, WindowKey };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
