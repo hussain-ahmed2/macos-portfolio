@@ -3,9 +3,9 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 type LocationState = {
-	activeLocation: Location | null;
+	activeLocation: Location;
 
-	setActiveLocation: (location: Location | null) => void;
+	setActiveLocation: (location: Location) => void;
 };
 
 const DEFAULT_LOCATION = locations.work;
@@ -14,8 +14,9 @@ const useLocationStore = create<LocationState>()(
 	immer((set) => ({
 		activeLocation: DEFAULT_LOCATION,
 
-		setActiveLocation: (location: Location | null = null) =>
+		setActiveLocation: (location: Location) =>
 			set((state) => {
+				if (location === undefined) return;
 				state.activeLocation = location;
 			}),
 
