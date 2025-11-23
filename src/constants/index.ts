@@ -218,7 +218,34 @@ const gallery = [
 
 export { navLinks, navIcons, dockApps, blogPosts, techStack, socials, photosLinks, gallery };
 
-const WORK_LOCATION = {
+// type Folder = {
+// 	id: number;
+// 	type: string;
+// 	name: string;
+// 	icon: string;
+// 	kind: "folder" | "file";
+// 	position?: string;
+// 	windowPosition?: string;
+// };
+
+type Location = {
+	id: number;
+	type?: string;
+	name: string;
+	icon: string;
+	kind: "folder" | "file";
+	position?: string;
+	windowPosition?: string;
+	fileType?: "txt" | "url" | "img" | "fig" | "pdf";
+	imageUrl?: string;
+	description?: string[];
+	href?: string;
+	subtitle?: string;
+	image?: string;
+	children?: Location[];
+};
+
+const WORK_LOCATION: Location = {
 	id: 1,
 	type: "work",
 	name: "Work",
@@ -386,7 +413,7 @@ const WORK_LOCATION = {
 	],
 };
 
-const ABOUT_LOCATION = {
+const ABOUT_LOCATION: Location = {
 	id: 2,
 	type: "about",
 	name: "About me",
@@ -439,7 +466,7 @@ const ABOUT_LOCATION = {
 	],
 };
 
-const RESUME_LOCATION = {
+const RESUME_LOCATION: Location = {
 	id: 3,
 	type: "resume",
 	name: "Resume",
@@ -458,7 +485,7 @@ const RESUME_LOCATION = {
 	],
 };
 
-const TRASH_LOCATION = {
+const TRASH_LOCATION: Location = {
 	id: 4,
 	type: "trash",
 	name: "Trash",
@@ -521,6 +548,6 @@ const WINDOW_CONFIG: Windows = {
 	trash: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
-export type { Windows, WindowKey };
+export type { Windows, WindowKey, Location };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
