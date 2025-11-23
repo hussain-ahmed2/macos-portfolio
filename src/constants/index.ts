@@ -1,4 +1,10 @@
-const navLinks = [
+type NavLink = {
+	id: number;
+	name: string;
+	type: WindowKey;
+};
+
+const navLinks: NavLink[] = [
 	{
 		id: 1,
 		name: "Projects",
